@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anurag Gupta — Video Editing for Doctors & Fitness Coaches</title>
+<meta name="description" content="Anurag Gupta is a specialist video editor for doctors, healthcare professionals, fitness coaches, gym owners, nutrition coaches, and fitness influencers. Content built to educate, build authority, and grow your audience.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   TOKENS
+============================================ */
+:root{
+  --bg-0:#0A0A0B;
+  --bg-1:#121214;
+  --bg-2:#19191C;
+  --panel:#141417;
+  --line:#26262A;
+  --line-soft:#1D1D20;
+  --text-0:#E8E6E1;
+  --text-1:#B7B4AD;
+  --text-2:#8B8985;
+  --signal:#FF4D2E;
+  --signal-dim:#7A2A1D;
+  --after:#2DD4BF;
+  --after-dim:#1A5C54;
+  --font-display:"Bricolage Grotesque", system-ui, sans-serif;
+  --font-body:"Inter", system-ui, sans-serif;
+  --font-mono:"JetBrains Mono", monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --container: 1180px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+}
+
+body{
+  background:var(--bg-0);
+  color:var(--text-0);
+  font-family:var(--font-body);
+  line-height:1.5;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+img,video{max-width:100%;display:block;}
+
+a{color:inherit;text-decoration:none;}
+
+::selection{background:var(--signal);color:#0A0A0B;}
+
+:focus-visible{
+  outline:2px solid var(--signal);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+.container{
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 28px;
+}
+
+.mono{
+  font-family:var(--font-mono);
+  letter-spacing:0.04em;
+}
+
+/* eyebrow / section label */
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--text-2);
+  margin-bottom:18px;
+}
+.eyebrow::before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--signal);
+  box-shadow:0 0 0 3px rgba(255,77,46,0.15);
+  flex-shrink:0;
+}
+
+.section{
+  padding:120px 0;
+  position:relative;
+}
+@media (max-width:768px){
+  .section{padding:80px 0;}
+}
+
+.section-head{
+  max-width:640px;
+  margin-bottom:56px;
+}
+
+h1,h2,h3,h4{
+  font-family:var(--font-display);
+  font-weight:700;
+  line-height:1.08;
+  letter-spacing:-0.01em;
+  color:var(--text-0);
+}
+
+h2{
+  font-size:clamp(2rem, 4vw, 2.85rem);
+  font-weight:700;
+}
+
+h3{
+  font-size:1.3rem;
+  font-weight:600;
+}
+
+p{color:var(--text-1);}
+
+.lede{
+  font-size:1.05rem;
+  color:var(--text-1);
+  max-width:520px;
+}
+
+/* ============================================
+   BUTTONS
+============================================ */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:15px 28px;
+  border-radius:8px;
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:0.95rem;
+  cursor:pointer;
+  border:1px solid transparent;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease), border-color .35s var(--ease), color .35s var(--ease);
+  white-space:nowrap;
+}
+.btn-primary{
+  background:var(--signal);
+  color:#0A0A0B;
+  box-shadow:0 0 0 0 rgba(255,77,46,0.4);
+}
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 30px -8px rgba(255,77,46,0.55);
+}
+.btn-primary:active{transform:translateY(0px);}
+
+.btn-ghost{
+  background:transparent;
+  color:var(--text-0);
+  border-color:var(--line);
+}
+.btn-ghost:hover{
+  border-color:var(--text-2);
+  background:rgba(255,255,255,0.03);
+  transform:translateY(-2px);
+}
+
+.btn-row{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+/* ============================================
+   NAV
+============================================ */
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  padding:18px 0;
+  background:rgba(10,10,11,0.7);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid transparent;
+  transition:border-color .4s var(--ease), padding .4s var(--ease), background .4s var(--ease);
+}
+.nav.scrolled{
+  border-bottom-color:var(--line-soft);
+  padding:13px 0;
+  background:rgba(10,10,11,0.88);
+}
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.15rem;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  letter-spacing:-0.01em;
+}
+.logo-mark{
+  width:9px;height:9px;border-radius:50%;
+  background:var(--signal);
+  box-shadow:0 0 0 3px rgba(255,77,46,0.15);
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:34px;
+  list-style:none;
+}
+.nav-links a{
+  font-size:0.9rem;
+  font-weight:500;
+  color:var(--text-1);
+  transition:color .25s;
+  position:relative;
+}
+.nav-links a:hover{color:var(--text-0);}
+.nav-cta{display:flex;align-items:center;gap:18px;}
+.nav-cta .btn{padding:11px 20px;font-size:0.88rem;}
+
+.nav-toggle{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:8px;
+}
+.nav-toggle span{
+  width:22px;height:1.5px;background:var(--text-0);
+  transition:transform .3s var(--ease), opacity .3s var(--ease);
+}
+.nav-toggle.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.nav-toggle.open span:nth-child(2){opacity:0;}
+.nav-toggle.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+@media (max-width:880px){
+  .nav-links{
+    position:fixed;
+    top:64px;
+    left:0;right:0;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    background:var(--bg-1);
+    border-bottom:1px solid var(--line-soft);
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .4s var(--ease);
+  }
+  .nav-links.open{max-height:420px;}
+  .nav-links li{width:100%;}
+  .nav-links a{
+    display:block;
+    width:100%;
+    padding:16px 28px;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-cta{display:none;}
+  .nav-toggle{display:flex;}
+}
+
+/* ============================================
+   HERO
+============================================ */
+.hero{
+  position:relative;
+  padding:168px 0 110px;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:
+    radial-gradient(ellipse 700px 500px at 78% 8%, rgba(255,77,46,0.10), transparent 60%),
+    radial-gradient(ellipse 600px 500px at 8% 90%, rgba(45,212,191,0.07), transparent 60%);
+}
+.scanline-track{
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--line), transparent);
+  z-index:0;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.05fr 0.95fr;
+  gap:60px;
+  align-items:center;
+  position:relative;
+  z-index:1;
+}
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;}
+}
+.hero-content h1{
+  font-size:clamp(2.3rem, 5.4vw, 3.85rem);
+  margin-bottom:22px;
+  max-width:640px;
+}
+.hero-content h1 .hl{
+  color:var(--signal);
+  font-style:normal;
+}
+.hero-sub{
+  font-size:1.1rem;
+  color:var(--text-1);
+  max-width:480px;
+  margin-bottom:36px;
+}
+.hero-stats{
+  display:flex;
+  gap:36px;
+  margin-top:48px;
+  flex-wrap:wrap;
+}
+.hero-stat{display:flex;flex-direction:column;gap:4px;}
+.hero-stat .num{
+  font-family:var(--font-display);
+  font-size:1.7rem;
+  font-weight:700;
+  color:var(--text-0);
+}
+.hero-stat .lbl{
+  font-family:var(--font-mono);
+  font-size:11.5px;
+  letter-spacing:0.07em;
+  color:var(--text-2);
+  text-transform:uppercase;
+}
+
+/* hero visual: scrubber-style before/after teaser */
+.hero-visual{
+  position:relative;
+}
+.scrub-frame{
+  position:relative;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  overflow:hidden;
+  box-shadow:0 30px 80px -30px rgba(0,0,0,0.7);
+}
+.scrub-topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 16px;
+  border-bottom:1px solid var(--line-soft);
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--text-2);
+}
+.scrub-topbar .dot-row{display:flex;gap:6px;}
+.scrub-topbar .dot-row span{width:8px;height:8px;border-radius:50%;background:var(--line);}
+.scrub-canvas{
+  position:relative;
+  aspect-ratio:16/10;
+  background:linear-gradient(135deg, #1c1c1f, #0f0f11);
+  overflow:hidden;
+}
+.scrub-side{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:10px;
+}
+.scrub-before{
+  filter:grayscale(0.6) contrast(0.85) brightness(0.75);
+  background:radial-gradient(circle at 30% 30%, #2a2a2c, #141416);
+}
+.scrub-after{
+  background:radial-gradient(circle at 30% 30%, #2a3a38, #0e1614);
+  clip-path:inset(0 0 0 50%);
+}
+.scrub-label{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:5px 11px;
+  border-radius:20px;
+  border:1px solid var(--line);
+}
+.scrub-before .scrub-label{color:var(--text-2);}
+.scrub-after .scrub-label{color:var(--after);border-color:rgba(45,212,191,0.3);}
+.scrub-icon{
+  width:46px;height:46px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-2);
+}
+.scrub-after .scrub-icon{color:var(--after);border-color:rgba(45,212,191,0.3);}
+.scrub-handle{
+  position:absolute;
+  top:0;bottom:0;left:50%;
+  width:2px;
+  background:var(--signal);
+  transform:translateX(-1px);
+  box-shadow:0 0 16px rgba(255,77,46,0.5);
+}
+.scrub-handle::after{
+  content:"";
+  position:absolute;
+  top:50%;left:50%;
+  width:34px;height:34px;
+  border-radius:50%;
+  background:var(--signal);
+  transform:translate(-50%,-50%);
+  box-shadow:0 4px 14px rgba(0,0,0,0.4);
+}
+.scrub-handle::before{
+  content:"⟷";
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  color:#0A0A0B;
+  font-size:14px;
+  font-weight:700;
+  z-index:2;
+}
+.scrub-timeline{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:13px 16px;
+  border-top:1px solid var(--line-soft);
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--text-2);
+}
+.scrub-timeline .bar{
+  flex:1;
+  height:3px;
+  background:var(--line);
+  border-radius:2px;
+  position:relative;
+  overflow:hidden;
+}
+.scrub-timeline .bar::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  width:46%;
+  background:var(--signal);
+  border-radius:2px;
+}
+
+/* ============================================
+   MARQUEE / client strip
+============================================ */
+.client-strip{
+  border-top:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft);
+  padding:28px 0;
+  overflow:hidden;
+  background:var(--bg-1);
+}
+.marquee-track{
+  display:flex;
+  width:max-content;
+  animation:scroll-x 32s linear infinite;
+}
+@keyframes scroll-x{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+.marquee-item{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:0 40px;
+  font-family:var(--font-mono);
+  font-size:13px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--text-2);
+  white-space:nowrap;
+}
+.marquee-item::before{
+  content:"";
+  width:5px;height:5px;
+  border-radius:50%;
+  background:var(--line);
+}
+
+/* ============================================
+   ABOUT
+============================================ */
+.about-grid{
+  display:grid;
+  grid-template-columns:0.85fr 1.15fr;
+  gap:64px;
+  align-items:start;
+}
+@media (max-width:880px){
+  .about-grid{grid-template-columns:1fr;gap:40px;}
+}
+.about-card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:30px;
+  position:sticky;
+  top:110px;
+}
+.about-avatar{
+  width:64px;height:64px;
+  border-radius:50%;
+  background:linear-gradient(135deg, var(--signal), #c23a1f);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.5rem;
+  color:#0A0A0B;
+  margin-bottom:18px;
+}
+.about-card h3{margin-bottom:3px;}
+.about-role{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  color:var(--after);
+  margin-bottom:22px;
+  display:block;
+}
+.about-meta{
+  display:flex;
+  flex-direction:column;
+  gap:13px;
+  padding-top:20px;
+  border-top:1px solid var(--line-soft);
+}
+.about-meta-row{
+  display:flex;
+  justify-content:space-between;
+  font-size:0.85rem;
+}
+.about-meta-row span:first-child{color:var(--text-2);}
+.about-meta-row span:last-child{color:var(--text-0);font-weight:500;}
+
+.about-body p{
+  margin-bottom:20px;
+  font-size:1.02rem;
+  line-height:1.7;
+}
+.about-body p:first-child{
+  font-size:1.18rem;
+  color:var(--text-0);
+  font-weight:500;
+  line-height:1.55;
+}
+.about-tags{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+.about-tag{
+  font-family:var(--font-mono);
+  font-size:12px;
+  padding:7px 13px;
+  border-radius:20px;
+  border:1px solid var(--line);
+  color:var(--text-1);
+}
+
+/* ============================================
+   SERVICES
+============================================ */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+}
+@media (max-width:880px){
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:600px){
+  .services-grid{grid-template-columns:1fr;}
+}
+.service-card{
+  background:var(--panel);
+  padding:38px 32px;
+  position:relative;
+  transition:background .35s var(--ease);
+  opacity:0;
+  transform:translateY(18px);
+}
+.service-card.in-view{
+  opacity:1;
+  transform:translateY(0);
+  transition:opacity .6s var(--ease), transform .6s var(--ease), background .35s var(--ease);
+}
+.service-card:hover{background:var(--bg-2);}
+.service-num{
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--text-2);
+  margin-bottom:24px;
+  display:block;
+}
+.service-icon{
+  width:42px;height:42px;
+  border-radius:10px;
+  background:rgba(255,77,46,0.08);
+  border:1px solid rgba(255,77,46,0.18);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+  color:var(--signal);
+}
+.service-card h3{margin-bottom:10px;font-size:1.12rem;}
+.service-card p{font-size:0.92rem;line-height:1.65;}
+
+/* ============================================
+   BEFORE/AFTER PORTFOLIO — signature element
+============================================ */
+.ba-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:28px;
+}
+@media (max-width:880px){
+  .ba-grid{grid-template-columns:1fr;}
+}
+.ba-card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .7s var(--ease), transform .7s var(--ease), border-color .3s;
+}
+.ba-card.in-view{opacity:1;transform:translateY(0);}
+.ba-card:hover{border-color:#33333a;}
+
+.compare-wrap{
+  position:relative;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  cursor:ew-resize;
+  user-select:none;
+  background:#0d0d0e;
+}
+.compare-pane{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:12px;
+}
+.compare-before{
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 2px, transparent 2px, transparent 14px),
+    radial-gradient(circle at 35% 30%, #232325, #0e0e10 70%);
+  filter:saturate(0.55) contrast(0.88) brightness(0.72);
+}
+.compare-after{
+  background:
+    repeating-linear-gradient(45deg, rgba(45,212,191,0.02) 0px, rgba(45,212,191,0.02) 2px, transparent 2px, transparent 14px),
+    radial-gradient(circle at 35% 30%, #1c3733, #0a1513 70%);
+  clip-path:inset(0 0 0 50%);
+}
+.compare-placeholder-icon{
+  width:56px;height:56px;
+  border-radius:50%;
+  border:1.5px dashed var(--line);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-2);
+}
+.compare-after .compare-placeholder-icon{
+  border-color:rgba(45,212,191,0.35);
+  color:var(--after);
+}
+.compare-ph-text{
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--text-2);
+  text-align:center;
+  max-width:200px;
+  line-height:1.5;
+}
+.compare-tag{
+  position:absolute;
+  top:14px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:6px 12px;
+  border-radius:20px;
+  z-index:3;
+  pointer-events:none;
+}
+.tag-before{
+  left:14px;
+  background:rgba(10,10,11,0.7);
+  border:1px solid var(--line);
+  color:var(--text-1);
+}
+.tag-after{
+  right:14px;
+  background:rgba(10,10,11,0.7);
+  border:1px solid rgba(45,212,191,0.3);
+  color:var(--after);
+}
+.compare-divider{
+  position:absolute;
+  top:0;bottom:0;
+  left:50%;
+  width:2px;
+  background:#fff;
+  transform:translateX(-1px);
+  z-index:4;
+  pointer-events:none;
+  box-shadow:0 0 12px rgba(0,0,0,0.4);
+}
+.compare-divider::after{
+  content:"";
+  position:absolute;
+  top:50%;left:50%;
+  width:38px;height:38px;
+  border-radius:50%;
+  background:#fff;
+  transform:translate(-50%,-50%);
+  box-shadow:0 4px 14px rgba(0,0,0,0.35);
+}
+.compare-divider::before{
+  content:"";
+  position:absolute;
+  top:50%;left:50%;
+  width:12px;height:12px;
+  transform:translate(-50%,-50%);
+  z-index:5;
+  border-left:2px solid #0A0A0B;
+  border-right:2px solid #0A0A0B;
+  border-top:none;border-bottom:none;
+  box-sizing:content-box;
+  padding:0 3px;
+}
+.compare-hint{
+  position:absolute;
+  bottom:14px;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:var(--font-mono);
+  font-size:10.5px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:rgba(232,230,225,0.55);
+  background:rgba(10,10,11,0.55);
+  padding:5px 11px;
+  border-radius:20px;
+  z-index:3;
+  pointer-events:none;
+  transition:opacity .4s;
+}
+.compare-wrap.dragged .compare-hint{opacity:0;}
+
+.ba-body{padding:26px 28px 30px;}
+.ba-top-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:14px;
+  margin-bottom:14px;
+}
+.ba-kicker{
+  font-family:var(--font-mono);
+  font-size:11.5px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--signal);
+  display:block;
+  margin-bottom:6px;
+}
+.ba-card h3{font-size:1.2rem;}
+.ba-index{
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--text-2);
+  flex-shrink:0;
+  padding-top:3px;
+}
+.ba-improvements{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:16px 0 18px;
+}
+.ba-chip{
+  font-family:var(--font-mono);
+  font-size:11.5px;
+  padding:6px 12px;
+  border-radius:7px;
+  background:rgba(45,212,191,0.07);
+  border:1px solid rgba(45,212,191,0.18);
+  color:var(--after);
+}
+.ba-result{
+  font-size:0.92rem;
+  line-height:1.65;
+  padding-top:16px;
+  border-top:1px solid var(--line-soft);
+}
+.ba-result strong{color:var(--text-0);font-weight:600;}
+
+/* ============================================
+   WHY WORK WITH ME
+============================================ */
+.why-wrap{
+  display:grid;
+  grid-template-columns:0.8fr 1.2fr;
+  gap:60px;
+}
+@media (max-width:880px){
+  .why-wrap{grid-template-columns:1fr;gap:36px;}
+}
+.why-list{
+  display:flex;
+  flex-direction:column;
+}
+.why-item{
+  display:flex;
+  gap:20px;
+  padding:26px 0;
+  border-bottom:1px solid var(--line-soft);
+  opacity:0;
+  transform:translateX(-16px);
+  transition:opacity .6s var(--ease), transform .6s var(--ease);
+}
+.why-item.in-view{opacity:1;transform:translateX(0);}
+.why-item:first-child{padding-top:0;}
+.why-num{
+  font-family:var(--font-mono);
+  font-size:0.95rem;
+  color:var(--signal);
+  flex-shrink:0;
+  padding-top:2px;
+  width:28px;
+}
+.why-text h3{font-size:1.08rem;margin-bottom:6px;}
+.why-text p{font-size:0.92rem;}
+
+.why-panel{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:36px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.why-panel-stat{
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+  padding:22px 0;
+  border-bottom:1px solid var(--line-soft);
+}
+.why-panel-stat:last-child{border-bottom:none;padding-bottom:0;}
+.why-panel-stat:first-child{padding-top:0;}
+.why-panel-stat .big{
+  font-family:var(--font-display);
+  font-size:2.4rem;
+  font-weight:700;
+  color:var(--text-0);
+}
+.why-panel-stat .small{
+  font-size:0.88rem;
+  color:var(--text-2);
+}
+
+/* ============================================
+   BUILDING FUTURE PARTNERSHIPS
+============================================ */
+.partners-section{padding:90px 0;}
+.partners-wrap{
+  text-align:center;
+  max-width:640px;
+  margin:0 auto;
+  padding:54px 40px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:20px;
+}
+.partners-wrap h2{font-size:clamp(1.5rem, 3vw, 2rem);}
+@media (max-width:600px){
+  .partners-wrap{padding:40px 24px;}
+}
+
+/* ============================================
+   CONTACT
+============================================ */
+.contact-wrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:54px;
+}
+@media (max-width:880px){
+  .contact-wrap{grid-template-columns:1fr;padding:36px 28px;gap:36px;}
+}
+.contact-info h2{margin-bottom:16px;}
+.contact-info p{margin-bottom:32px;max-width:420px;}
+.contact-channels{display:flex;flex-direction:column;gap:18px;}
+.contact-channel{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:16px 18px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  transition:border-color .3s, background .3s, transform .3s var(--ease);
+}
+.contact-channel:hover{
+  border-color:#33333a;
+  background:var(--bg-2);
+  transform:translateX(4px);
+}
+.channel-icon{
+  width:40px;height:40px;
+  border-radius:10px;
+  background:rgba(255,77,46,0.08);
+  border:1px solid rgba(255,77,46,0.18);
+  color:var(--signal);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.channel-icon.teal{
+  background:rgba(45,212,191,0.08);
+  border-color:rgba(45,212,191,0.18);
+  color:var(--after);
+}
+.channel-label{
+  font-family:var(--font-mono);
+  font-size:10.5px;
+  letter-spacing:0.07em;
+  text-transform:uppercase;
+  color:var(--text-2);
+  margin-bottom:2px;
+}
+.channel-value{font-size:0.95rem;font-weight:500;color:var(--text-0);}
+
+/* form */
+.form-group{margin-bottom:18px;}
+.form-group label{
+  display:block;
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--text-2);
+  margin-bottom:9px;
+}
+.form-group input,
+.form-group textarea,
+.form-group select{
+  width:100%;
+  background:var(--bg-1);
+  border:1px solid var(--line);
+  border-radius:9px;
+  padding:13px 15px;
+  color:var(--text-0);
+  font-family:var(--font-body);
+  font-size:0.92rem;
+  transition:border-color .25s;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+  border-color:var(--signal);
+  outline:none;
+}
+.form-group textarea{resize:vertical;min-height:100px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media (max-width:500px){.form-row{grid-template-columns:1fr;}}
+.form-note{
+  font-size:0.78rem;
+  color:var(--text-2);
+  margin-top:14px;
+}
+
+/* ============================================
+   FINAL CTA
+============================================ */
+.final-cta{
+  position:relative;
+  text-align:center;
+  padding:130px 0;
+  overflow:hidden;
+}
+.final-cta-bg{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 800px 500px at 50% 30%, rgba(255,77,46,0.12), transparent 65%);
+  z-index:0;
+}
+.final-cta-inner{position:relative;z-index:1;}
+.final-cta h2{
+  font-size:clamp(2.1rem, 5vw, 3.4rem);
+  max-width:760px;
+  margin:0 auto 20px;
+}
+.final-cta p{
+  max-width:480px;
+  margin:0 auto 40px;
+  font-size:1.05rem;
+}
+.final-cta .btn-row{justify-content:center;}
+
+/* ============================================
+   FOOTER
+============================================ */
+.footer{
+  border-top:1px solid var(--line-soft);
+  padding:44px 0;
+}
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:20px;
+}
+.footer-left{display:flex;align-items:center;gap:10px;}
+.footer-left .logo-mark{width:7px;height:7px;}
+.footer-text{font-size:0.85rem;color:var(--text-2);}
+.footer-links{display:flex;gap:28px;}
+.footer-links a{font-size:0.85rem;color:var(--text-2);transition:color .25s;}
+.footer-links a:hover{color:var(--text-0);}
+
+/* ============================================
+   REVEAL UTILITY (generic)
+============================================ */
+.reveal{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .7s var(--ease), transform .7s var(--ease);
+}
+.reveal.in-view{opacity:1;transform:translateY(0);}
+
+/* ============================================
+   BACK TO TOP
+============================================ */
+.to-top{
+  position:fixed;
+  bottom:26px;
+  right:26px;
+  width:46px;height:46px;
+  border-radius:50%;
+  background:var(--panel);
+  border:1px solid var(--line);
+  color:var(--text-0);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(10px);
+  transition:opacity .35s var(--ease), transform .35s var(--ease), border-color .25s;
+  z-index:900;
+}
+.to-top.show{opacity:1;pointer-events:auto;transform:translateY(0);}
+.to-top:hover{border-color:var(--signal);color:var(--signal);}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAV
+============================================ -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="logo"><span class="logo-mark"></span>Anurag Gupta</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Transformations</a></li>
+      <li><a href="#why">Why Me</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary">Hire Me</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============================================
+     HERO
+============================================ -->
+<header class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="scanline-track" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <div class="eyebrow">Specialist Video Editor for Medical & Fitness Creators</div>
+      <h1>Video Editing for <span class="hl">Doctors & Fitness Coaches</span> Who Want to Build Trust and Grow Their Audience</h1>
+      <p class="hero-sub">I help healthcare professionals and fitness creators transform raw footage into engaging content that educates, builds authority, and keeps viewers watching.</p>
+      <div class="btn-row">
+        <a href="#work" class="btn btn-primary">View Transformations</a>
+        <a href="#contact" class="btn btn-ghost">Book a Free Consultation</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="num">Medical</span>
+          <span class="lbl">& Fitness Niche Only</span>
+        </div>
+        <div class="hero-stat">
+          <span class="num">Direct</span>
+          <span class="lbl">1-on-1 Communication</span>
+        </div>
+        <div class="hero-stat">
+          <span class="num">Open</span>
+          <span class="lbl">New Projects</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="scrub-frame">
+        <div class="scrub-topbar">
+          <span class="dot-row"><span></span><span></span><span></span></span>
+          <span>raw_footage_final.mp4</span>
+        </div>
+        <div class="scrub-canvas">
+          <div class="scrub-side scrub-before">
+            <div class="scrub-icon">▶</div>
+            <span class="scrub-label">Before</span>
+          </div>
+          <div class="scrub-side scrub-after">
+            <div class="scrub-icon">▶</div>
+            <span class="scrub-label">After</span>
+          </div>
+          <div class="scrub-handle"></div>
+        </div>
+        <div class="scrub-timeline">
+          <span>00:24</span>
+          <div class="bar"></div>
+          <span>04:12</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- CLIENT STRIP -->
+<div class="client-strip">
+  <div class="marquee-track">
+    <span class="marquee-item">Doctors</span>
+    <span class="marquee-item">Healthcare Professionals</span>
+    <span class="marquee-item">Fitness Coaches</span>
+    <span class="marquee-item">Personal Trainers</span>
+    <span class="marquee-item">Nutrition Coaches</span>
+    <span class="marquee-item">Gym Owners</span>
+    <span class="marquee-item">Fitness Influencers</span>
+    <span class="marquee-item">Doctors</span>
+    <span class="marquee-item">Healthcare Professionals</span>
+    <span class="marquee-item">Fitness Coaches</span>
+    <span class="marquee-item">Personal Trainers</span>
+    <span class="marquee-item">Nutrition Coaches</span>
+    <span class="marquee-item">Gym Owners</span>
+    <span class="marquee-item">Fitness Influencers</span>
+  </div>
+</div>
+
+<!-- ============================================
+     ABOUT
+============================================ -->
+<section class="section" id="about">
+  <div class="container about-grid">
+    <div class="about-card reveal">
+      <div class="about-avatar">AG</div>
+      <h3>Anurag Gupta</h3>
+      <span class="about-role">Specialist Video Editor for Medical & Fitness Creators</span>
+      <div class="about-meta">
+        <div class="about-meta-row"><span>Based in</span><span>India</span></div>
+        <div class="about-meta-row"><span>Serving</span><span>USA Clients</span></div>
+        <div class="about-meta-row"><span>Availability</span><span>Open for Projects</span></div>
+        <div class="about-meta-row"><span>Niche</span><span>Medical & Fitness</span></div>
+      </div>
+    </div>
+
+    <div class="about-body reveal">
+      <div class="eyebrow">About Me</div>
+      <h2 style="margin-bottom:24px;">I edit so your expertise looks as credible as it actually is.</h2>
+      <p>Hi, I'm Anurag Gupta, a video editor focused on helping doctors, healthcare professionals, fitness coaches, and personal brands create high-quality content that stands out online.</p>
+      <p>Whether you're sharing medical insights, fitness advice, educational content, or personal brand stories, I help turn raw footage into professional videos designed to build trust, increase engagement, and strengthen your online presence.</p>
+      <p>My focus is simple: create content that looks professional, keeps viewers engaged, and helps you communicate your expertise more effectively.</p>
+      <div class="about-tags">
+        <span class="about-tag">Educational Content</span>
+        <span class="about-tag">Reels & Shorts</span>
+        <span class="about-tag">Long Form Editing</span>
+        <span class="about-tag">Captioning</span>
+        <span class="about-tag">Trust-Focused Editing</span>
+        <span class="about-tag">Personal Brand Growth</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SERVICES
+============================================ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">What I Do</div>
+      <h2>Services built around one outcome — viewers who trust you.</h2>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <div class="service-icon">✂</div>
+        <h3>Professional Video Editing</h3>
+        <p>Clean, well-paced edits for explainer videos, patient education, and coaching content — structured so your message lands clearly and holds attention from the first second.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <div class="service-icon">◐</div>
+        <h3>Color Enhancement</h3>
+        <p>Consistent, natural-looking color correction that makes you look credible and professional on camera, so the focus stays on your expertise, not the lighting.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <div class="service-icon">♫</div>
+        <h3>Audio Enhancement</h3>
+        <p>Cleaned, balanced audio so every explanation or coaching cue comes through clearly — nothing competing with your voice, nothing distracting your viewer from your message.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">04</span>
+        <div class="service-icon">▭</div>
+        <h3>Captions & Subtitles</h3>
+        <p>Accurate, easy-to-follow captions so your health or fitness information is clear even on mute — keeping viewers engaged and ensuring nothing gets misread or misunderstood.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">05</span>
+        <div class="service-icon">▮</div>
+        <h3>Short Form Content Editing</h3>
+        <p>Hook-driven Reels and Shorts built to stop the scroll and hold viewer retention — shaped around your expertise rather than gimmicks or trends that don't fit your brand.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">06</span>
+        <div class="service-icon">⟲</div>
+        <h3>Content Repurposing</h3>
+        <p>One recording turned into multiple pieces of platform-ready content, so your authority and expertise reach a wider audience without extra time spent filming.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     BEFORE / AFTER PORTFOLIO
+============================================ -->
+<section class="section" id="work">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Before & After</div>
+      <h2>Drag the slider. See the difference yourself.</h2>
+      <p class="lede" style="margin-top:16px;">Each project below pairs raw footage from a medical or fitness content scenario with its finished edit. Click and drag across each frame to compare.</p>
+    </div>
+
+    <div class="ba-grid">
+
+      <!-- PROJECT 1 — Color Grading -->
+      <div class="ba-card">
+        <div class="compare-wrap" data-compare>
+          <div class="compare-pane compare-before">
+            <span class="compare-tag tag-before">Before</span>
+            <video src="videos/before_color_grading.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;"></video>
+          </div>
+          <div class="compare-pane compare-after">
+            <span class="compare-tag tag-after">After</span>
+            <video src="videos/after_color_grading.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;"></video>
+          </div>
+          <div class="compare-divider"></div>
+          <span class="compare-hint">Drag to compare</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-top-row">
+            <div>
+              <span class="ba-kicker">Project 01</span>
+              <h3>Doctor Educational Reel Transformation</h3>
+            </div>
+            <span class="ba-index">01</span>
+          </div>
+          <div class="ba-improvements">
+            <span class="ba-chip">White Balance Fixed</span>
+            <span class="ba-chip">Consistent Color Grade</span>
+            <span class="ba-chip">Skin Tone Correction</span>
+            <span class="ba-chip">Contrast & Clarity</span>
+          </div>
+          <p class="ba-result"><strong>Result:</strong> Flat footage shot under harsh clinic lighting was transformed into a clean, consistent look — helping the explanation feel professional and trustworthy instead of distracting from it.</p>
+        </div>
+      </div>
+
+      <!-- PROJECT 2 — Audio Cleanup -->
+      <div class="ba-card">
+        <div class="compare-wrap" data-compare>
+          <div class="compare-pane compare-before">
+            <span class="compare-tag tag-before">Before</span>
+            <video src="videos/before_audio_cleanup.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;"></video>
+          </div>
+          <div class="compare-pane compare-after">
+            <span class="compare-tag tag-after">After</span>
+            <video src="videos/after_audio_cleanup.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;"></video>
+          </div>
+          <div class="compare-divider"></div>
+          <span class="compare-hint">Drag to compare</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-top-row">
+            <div>
+              <span class="ba-kicker">Project 02</span>
+              <h3>Fitness Coach Content Transformation</h3>
+            </div>
+            <span class="ba-index">02</span>
+          </div>
+          <div class="ba-improvements">
+            <span class="ba-chip">Noise Removal</span>
+            <span class="ba-chip">Voice Leveling</span>
+            <span class="ba-chip">EQ & Compression</span>
+            <span class="ba-chip">Background Music Mix</span>
+          </div>
+          <p class="ba-result"><strong>Result:</strong> Echo and background gym noise were cleaned and balanced so the coaching cue comes through clearly — viewers hear the instruction, not the room.</p>
+        </div>
+      </div>
+
+      <!-- PROJECT 3 — Captions & Engagement -->
+      <div class="ba-card">
+        <div class="compare-wrap" data-compare>
+          <div class="compare-pane compare-before">
+            <span class="compare-tag tag-before">Before</span>
+            <video src="videos/before_captions.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;"></video>
+          </div>
+          <div class="compare-pane compare-after">
+            <span class="compare-tag tag-after">After</span>
+            <video src="videos/after_captions.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;"></video>
+          </div>
+          <div class="compare-divider"></div>
+          <span class="compare-hint">Drag to compare</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-top-row">
+            <div>
+              <span class="ba-kicker">Project 03</span>
+              <h3>Health & Wellness Content Enhancement</h3>
+            </div>
+            <span class="ba-index">03</span>
+          </div>
+          <div class="ba-improvements">
+            <span class="ba-chip">Styled Captions</span>
+            <span class="ba-chip">Key Term Highlights</span>
+            <span class="ba-chip">Pattern Interrupts</span>
+            <span class="ba-chip">Hook Optimization</span>
+          </div>
+          <p class="ba-result"><strong>Result:</strong> A caption-free explainer was rebuilt with clear, styled captions and a stronger opening hook — so the health information is easy to follow even on mute, and viewers stay to the end.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     WHY WORK WITH ME
+============================================ -->
+<section class="section" id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Why Work With Me</div>
+      <h2>Your expertise deserves to look as credible as it is.</h2>
+    </div>
+
+    <div class="why-wrap">
+      <div class="why-list">
+        <div class="why-item">
+          <span class="why-num">01</span>
+          <div class="why-text">
+            <h3>Fast Communication</h3>
+            <p>You'll always know where your project stands — clear status updates, clear timelines, and no chasing for replies.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-num">02</span>
+          <div class="why-text">
+            <h3>Attention To Detail</h3>
+            <p>Every cut, caption, and audio level is checked carefully, because in medical and fitness content, clarity isn't optional — it's the whole point.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-num">03</span>
+          <div class="why-text">
+            <h3>Professional Presentation</h3>
+            <p>Every editing choice is made to make you look credible and polished on screen — never overproduced, never salesy.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-num">04</span>
+          <div class="why-text">
+            <h3>Reliable Delivery</h3>
+            <p>Agreed timelines are honored and your project moves forward on schedule, so you can plan your content calendar with confidence.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="why-num">05</span>
+          <div class="why-text">
+            <h3>Audience-Focused Editing</h3>
+            <p>Your voice, your audience, and your personal brand come first — every editing choice serves your viewer's experience, not personal style for its own sake.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-panel reveal">
+        <div class="why-panel-stat">
+          <span class="big">Niche</span>
+          <span class="small">Medical and fitness creators only — no general content work</span>
+        </div>
+        <div class="why-panel-stat">
+          <span class="big">1:1</span>
+          <span class="small">Direct communication, no account managers in between</span>
+        </div>
+        <div class="why-panel-stat">
+          <span class="big">Open</span>
+          <span class="small">Currently taking on new projects</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     BUILDING FUTURE PARTNERSHIPS
+============================================ -->
+<section class="section partners-section">
+  <div class="container">
+    <div class="partners-wrap reveal">
+      <div class="eyebrow" style="justify-content:center;">Building Future Partnerships</div>
+      <h2>Currently building partnerships with healthcare professionals and fitness creators.</h2>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     CONTACT
+============================================ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-wrap reveal">
+      <div class="contact-info">
+        <div class="eyebrow">Contact Me</div>
+        <h2>Let's talk about your content.</h2>
+        <p>Tell me about your footage and what you want it to become. I'll get back to you with clear next steps and we can take it from there.</p>
+
+        <div class="contact-channels">
+          <div class="contact-channel">
+            <div class="channel-icon">@</div>
+            <div>
+              <div class="channel-label">Email</div>
+              <div class="channel-value">anuraggupta.edits@gmail.com</div>
+            </div>
+          </div>
+          <div class="contact-channel">
+            <div class="channel-icon teal">☏</div>
+            <div>
+              <div class="channel-label">WhatsApp</div>
+              <div class="channel-value">+91 00000 00000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <form id="contactForm" onsubmit="return handleFormSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-name">Name</label>
+              <input type="text" id="cf-name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="cf-email">Email</label>
+              <input type="email" id="cf-email" name="email" placeholder="you@company.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cf-type">Project Type</label>
+            <select id="cf-type" name="type">
+              <option>Professional Video Editing</option>
+              <option>Short Form Content Editing</option>
+              <option>Content Repurposing</option>
+              <option>Color Enhancement Only</option>
+              <option>Full Transformation</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cf-message">Project Details</label>
+            <textarea id="cf-message" name="message" placeholder="Tell me about your footage, timeline, and goals..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+          <p class="form-note">I typically respond within 1–2 business days.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FINAL CTA
+============================================ -->
+<section class="final-cta">
+  <div class="final-cta-bg" aria-hidden="true"></div>
+  <div class="container final-cta-inner">
+    <div class="eyebrow" style="justify-content:center;">Let's Work Together</div>
+    <h2>Ready to Elevate Your Content?</h2>
+    <p>Let's create professional content that helps your audience learn, engage, and trust your expertise.</p>
+    <div class="btn-row">
+      <a href="#contact" class="btn btn-primary">Let's Talk</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+============================================ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-left">
+      <span class="logo-mark"></span>
+      <span class="footer-text">© 2026 Anurag Gupta. All rights reserved.</span>
+    </div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#work">Transformations</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- NAV: scroll state + mobile toggle ---------- */
+  var nav = document.getElementById('nav');
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  var toTop = document.getElementById('toTop');
+
+  function onScroll(){
+    var y = window.scrollY || window.pageYOffset;
+    if(y > 30){ nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
+    if(y > 600){ toTop.classList.add('show'); } else { toTop.classList.remove('show'); }
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  navToggle.addEventListener('click', function(){
+    navToggle.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+
+  // close mobile menu after clicking a link
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      navToggle.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+
+  toTop.addEventListener('click', function(){
+    window.scrollTo({ top:0, behavior:'smooth' });
+  });
+
+  /* ---------- SCROLL REVEAL ---------- */
+  var revealEls = document.querySelectorAll('.reveal, .service-card, .ba-card, .why-item');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  /* ---------- BEFORE/AFTER COMPARE SLIDERS ---------- */
+  var compares = document.querySelectorAll('[data-compare]');
+
+  compares.forEach(function(wrap){
+    var afterPane = wrap.querySelector('.compare-after');
+    var divider = wrap.querySelector('.compare-divider');
+    var dragging = false;
+
+    function setPosition(percent){
+      percent = Math.max(0, Math.min(100, percent));
+      afterPane.style.clipPath = 'inset(0 0 0 ' + percent + '%)';
+      divider.style.left = percent + '%';
+    }
+
+    function percentFromClientX(clientX){
+      var rect = wrap.getBoundingClientRect();
+      var x = clientX - rect.left;
+      return (x / rect.width) * 100;
+    }
+
+    function startDrag(clientX){
+      dragging = true;
+      wrap.classList.add('dragged');
+      setPosition(percentFromClientX(clientX));
+    }
+    function moveDrag(clientX){
+      if(!dragging) return;
+      setPosition(percentFromClientX(clientX));
+    }
+    function endDrag(){
+      dragging = false;
+    }
+
+    // Mouse
+    wrap.addEventListener('mousedown', function(e){
+      startDrag(e.clientX);
+      e.preventDefault();
+    });
+    window.addEventListener('mousemove', function(e){
+      moveDrag(e.clientX);
+    });
+    window.addEventListener('mouseup', endDrag);
+
+    // Touch
+    wrap.addEventListener('touchstart', function(e){
+      wrap.classList.add('dragged');
+      startDrag(e.touches[0].clientX);
+    }, { passive:true });
+    wrap.addEventListener('touchmove', function(e){
+      moveDrag(e.touches[0].clientX);
+    }, { passive:true });
+    wrap.addEventListener('touchend', endDrag);
+
+    // Click-to-set (in case user just taps/clicks without dragging)
+    wrap.addEventListener('click', function(e){
+      wrap.classList.add('dragged');
+      setPosition(percentFromClientX(e.clientX));
+    });
+
+    // Keyboard accessibility: focus + arrow keys
+    wrap.setAttribute('tabindex', '0');
+    wrap.setAttribute('role', 'slider');
+    wrap.setAttribute('aria-label', 'Before and after comparison slider');
+    wrap.setAttribute('aria-valuemin', '0');
+    wrap.setAttribute('aria-valuemax', '100');
+    wrap.setAttribute('aria-valuenow', '50');
+
+    wrap.addEventListener('keydown', function(e){
+      var rect = wrap.getBoundingClientRect();
+      var currentLeft = parseFloat(divider.style.left) || 50;
+      var step = 4;
+      if(e.key === 'ArrowLeft'){
+        wrap.classList.add('dragged');
+        setPosition(currentLeft - step);
+        wrap.setAttribute('aria-valuenow', String(Math.round(currentLeft - step)));
+        e.preventDefault();
+      } else if(e.key === 'ArrowRight'){
+        wrap.classList.add('dragged');
+        setPosition(currentLeft + step);
+        wrap.setAttribute('aria-valuenow', String(Math.round(currentLeft + step)));
+        e.preventDefault();
+      }
+    });
+
+    // init at 50%
+    setPosition(50);
+  });
+
+  /* ---------- SMOOTH ANCHOR SCROLL OFFSET (account for fixed nav) ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
+    anchor.addEventListener('click', function(e){
+      var targetId = this.getAttribute('href');
+      if(targetId.length < 2) return;
+      var target = document.querySelector(targetId);
+      if(!target) return;
+      e.preventDefault();
+      var navHeight = nav.offsetHeight;
+      var top = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 12;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+
+  /* ---------- CONTACT FORM HANDLER ---------- */
+  window.handleFormSubmit = function(e){
+    e.preventDefault();
+    var btn = e.target.querySelector('button[type="submit"]');
+    var originalText = btn.textContent;
+    btn.textContent = 'Message Ready ✓';
+    btn.style.opacity = '0.85';
+    setTimeout(function(){
+      btn.textContent = originalText;
+      btn.style.opacity = '1';
+    }, 2200);
+    // NOTE for Anurag: connect this form to Formspree, EmailJS, or your own backend
+    // so submissions are actually delivered to your email/WhatsApp.
+    alert('Thanks for reaching out! I will get back to you within 1–2 business days.');
+    return false;
+  };
+
+})();
+</script>
+
+</body>
+</html>
